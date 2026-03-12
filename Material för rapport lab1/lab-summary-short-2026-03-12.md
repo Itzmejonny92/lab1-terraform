@@ -6,4 +6,6 @@ Idag satte jag upp min Terraform-labb for GCP med en Ubuntu-VM, startup-script f
 
 Jag stotte pa blockers kring GCP-IAM, GitHub-autentisering och branch-hantering. `terraform apply` stoppades av saknade GCP-behorigheter, Git-push over losenord fungerade inte utan behovde losas med `gh` i WSL, och repot behovde flyttas over till `main` som default branch for att matcha CI-workflown.
 
+Jag verifierade ocksa att problemet i GCP inte bara handlade om login utan om saknade IAM-permissions for Compute Engine och resource policies. Samtidigt lades credentials in som GitHub Secret och workflown uppdaterades sa att GitHub Actions kan autentisera mot GCP i CI-miljon.
+
 Det mesta av kodarbetet ar klart. Det som aterstar ar att fixa GCP-behorigheter, kora `terraform apply` och lagga in screenshots pa pipeline och VM i dokumentationen.

@@ -14,4 +14,8 @@ Under arbetet stotte jag ocksa pa flera praktiska blockers runt Git och GitHub. 
 
 En annan blocker var branch-strukturen i repot. Repos default branch lag tidigare pa master, medan min GitHub Actions-workflow var konfigurerad for main. Det lostes genom att pusha upp main, satta main som default branch pa GitHub, koppla lokal main till origin/main och verifiera att remote HEAD faktiskt pekar pa main. Efter det blev branch-strukturen konsekvent med CI-konfigurationen.
 
-Sammanfattningsvis har jag idag fatt pa plats infrastrukturkod, startup-hardening, backup-policy, CI-pipeline och dokumentation. Det som aterstar ar framfor allt att slutfora GCP-autentisering, kora apply, och sedan ta screenshots pa den passerande pipelinen och den skapade VM:n i GCP Console.
+Jag testade aven flera spar for GCP-autentisering. Forst verifierade jag att ADC kunde ge en access token, men konstaterade senare att lokal inloggning inte ensam loste problemet eftersom terraform apply fortfarande stoppades av 403. Det gjorde det tydligt att problemet inte bara var credentials, utan framfor allt saknade IAM-behorigheter for bland annat compute.instances.create, compute.disks.create, compute.subnetworks.use och compute.resourcePolicies.create.
+
+Som en del av losningen la jag aven in de credentials jag fatt i GitHub Actions Secrets och uppdaterade workflown sa att validate-jobbet autentiserar mot GCP med google-github-actions/auth. Det skiljer pa lokal auth i WSL och CI-auth i GitHub, vilket var viktigt att forsta for att inte blanda ihop de tva flodena.
+
+Sammanfattningsvis har jag idag fatt pa plats infrastrukturkod, startup-hardening, backup-policy, CI-pipeline, dokumentation och en fungerande branch-struktur mot main. Det som aterstar ar framfor allt att fa korrekta GCP-IAM-behorigheter for den identitet som ska kora terraform apply, kora deploymenten fullt ut, och sedan ta screenshots pa den passerande pipelinen och den skapade VM:n i GCP Console.
