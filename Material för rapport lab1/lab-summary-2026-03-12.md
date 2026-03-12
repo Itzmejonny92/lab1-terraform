@@ -18,4 +18,6 @@ Jag testade aven flera spår for GCP-autentisering. Forst verifierade jag att AD
 
 Som en del av losningen la jag aven in de credentials jag fatt i GitHub Actions Secrets och uppdaterade workflown sa att `validate`-jobbet autentiserar mot GCP med `google-github-actions/auth`. Det skiljer pa lokal auth i WSL och CI-auth i GitHub, vilket var viktigt att forsta for att inte blanda ihop de tva flodena.
 
+Jag verifierade aven detta genom att kora `terraform plan` och `terraform apply` pa nytt. `plan` blockerades tillfalligt av en state lock fran en tidigare korning, men nar jag kontrollerade vidare fanns ingen aktiv lokal lock kvar att losa. `apply` korde aterigen mot GCP och misslyckades med samma `403`-fel, vilket bekraktade att blockern fortfarande ar IAM-behorigheter och inte ett tillfalligt verktygsfel eller ett problem i Terraform-koden.
+
 Sammanfattningsvis har jag idag fatt pa plats infrastrukturkod, startup-hardening, backup-policy, CI-pipeline, dokumentation och en fungerande branch-struktur mot `main`. Det som aterstar ar framfor allt att fa korrekta GCP-IAM-behorigheter for den identitet som ska kora `terraform apply`, kora deploymenten fullt ut, och sedan ta screenshots pa den passerande pipelinen och den skapade VM:n i GCP Console.
