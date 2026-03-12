@@ -4,3 +4,7 @@
 terraform.tfvars
 *.tfvars
 !example.tfvars
+*.auto.tfvars
+*.auto.tfvars.json
+*-service-account.json
+*-sa.json
