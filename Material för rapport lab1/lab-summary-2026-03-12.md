@@ -10,4 +10,8 @@ Utovar infrastrukturen satte jag upp en GitHub Actions-pipeline i `.github/workf
 
 Jag skapade ocksa dokumentationsunderlag i projektet, inklusive README och sammanfattningar. Under verifieringen konstaterade jag att Terraform-planen ser korrekt ut med mina riktiga variabler, men att `terraform apply` blockeras av IAM-behorigheter i GCP. Det betyder att konfigurationen i sig ar i bra skick, men att jag senare maste losa credentials och roller for att kunna skapa resurserna i projektet.
 
+Under arbetet stotte jag ocksa pa flera praktiska blockers runt Git och GitHub. Forst gick det inte att pusha med vanligt GitHub-losenord over HTTPS, eftersom GitHub inte langre tillater password authentication for Git-operatorer. Losningen blev att anvanda GitHub CLI och logga in korrekt. Jag behovde ocksa ta hansyn till att jag arbetar i VS Code via WSL, vilket innebar att `gh` maste finnas och anvandas inne i WSL-miljon, inte bara pa Windows-sidan.
+
+En annan blocker var branch-strukturen i repot. Repos default branch lag tidigare pa `master`, medan min GitHub Actions-workflow var konfigurerad for `main`. Det lostes genom att pusha upp `main`, satta `main` som default branch pa GitHub, koppla lokal `main` till `origin/main` och verifiera att remote `HEAD` faktiskt pekar pa `main`. Efter det blev branch-strukturen konsekvent med CI-konfigurationen.
+
 Sammanfattningsvis har jag idag fatt pa plats infrastrukturkod, startup-hardening, backup-policy, CI-pipeline och dokumentation. Det som aterstar ar framfor allt att slutfora GCP-autentisering, kora `apply`, och sedan ta screenshots pa den passerande pipelinen och den skapade VM:n i GCP Console.

@@ -4,4 +4,6 @@ Datum: 2026-03-12
 
 Idag satte jag upp min Terraform-labb for GCP med en Ubuntu-VM, startup-script for hardening och en daglig backup-policy. Jag skapade ocksa en GitHub Actions-pipeline som kor `terraform fmt`, Trivy och `terraform validate` mot branchen `main`.
 
+Jag stotte pa blockers kring GCP-IAM, GitHub-autentisering och branch-hantering. `terraform apply` stoppades av saknade GCP-behorigheter, Git-push over losenord fungerade inte utan behovde losas med `gh` i WSL, och repot behovde flyttas over till `main` som default branch for att matcha CI-workflown.
+
 Det mesta av kodarbetet ar klart. Det som aterstar ar att fixa GCP-behorigheter, kora `terraform apply` och lagga in screenshots pa pipeline och VM i dokumentationen.
