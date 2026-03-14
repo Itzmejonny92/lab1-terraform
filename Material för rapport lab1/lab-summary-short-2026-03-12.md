@@ -8,6 +8,6 @@ Jag stotte pa blockers kring GCP-IAM, GitHub-autentisering och branch-hantering.
 
 Jag verifierade ocksa att problemet i GCP inte bara handlade om login utan om saknade IAM-permissions for Compute Engine och resource policies. Samtidigt lades credentials in som GitHub Secret och workflown uppdaterades sa att GitHub Actions kan autentisera mot GCP i CI-miljon.
 
-Nar jag korde `terraform plan` och `terraform apply` igen fungerade `plan`, medan `apply` fortfarande misslyckades med samma `403`. Det bekraktade att state lock inte langre blockerar och att den kvarvarande blockern ar IAM-rattigheter i projektet.
+Nar jag korde `terraform plan` och `terraform apply` igen fungerade `plan`. Med en ny service account-nyckel kom `apply` forbi IAM-felet, och efter att jag tog bort publik IP fran VM:n gick hela deploymenten igenom. Bade VM:n och backup-kopplingen skapades korrekt.
 
-Det mesta av kodarbetet ar klart. Det som aterstar ar att fixa GCP-behorigheter, kora `terraform apply` och lagga in screenshots pa pipeline och VM i dokumentationen.
+Det mesta av kodarbetet ar klart. Det som aterstar ar att lagga in screenshots pa pipeline och VM i dokumentationen.
