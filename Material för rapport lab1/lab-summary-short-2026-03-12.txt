@@ -10,4 +10,6 @@ Jag verifierade ocksa att problemet i GCP inte bara handlade om login utan om sa
 
 Nar jag korde terraform plan och terraform apply igen fungerade plan. Med en ny service account-nyckel kom apply forbi IAM-felet, och efter att jag tog bort publik IP fran VM:n gick hela deploymenten igenom. Bade VM:n och backup-kopplingen skapades korrekt.
 
-Det mesta av kodarbetet ar klart. Det som aterstar ar att lagga in screenshots pa pipeline och VM i dokumentationen.
+Det mesta av kodarbetet ar klart. Slutlaget ar att terraform apply fungerar lokalt, medan GitHub Actions kor lint, security, validate och plan men inte apply eftersom delad remote state saknas.
+
+Kommentar till lararen: Ar detta upplagg okej for godkant?
