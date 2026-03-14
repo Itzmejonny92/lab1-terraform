@@ -13,3 +13,5 @@ Nar jag korde `terraform plan` och `terraform apply` igen fungerade `plan`. Med 
 Det mesta av kodarbetet ar klart. Slutlaget ar att `terraform apply` fungerar lokalt, medan GitHub Actions kor `lint`, `security`, `validate` och `plan` men inte `apply` eftersom delad remote state saknas.
 
 Kommentar till lararen: Ar detta upplagg okej for godkant?
+
+Som sista kontroll verifierade jag ocksa att kansliga och lokala Terraform-filer fortfarande ignorerades av `.gitignore`.
