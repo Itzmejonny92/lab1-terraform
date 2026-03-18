@@ -36,8 +36,7 @@ Workflowen finns i `.github/workflows/terraform.yml` och kor:
 - `security` med Trivy IaC-scan
 - `validate` med `terraform init -backend=false` och `terraform validate`
 - `plan` med GCP-auth via `GCP_SA_KEY` och repo variables
-
-`apply` kor inte i CI i den har versionen eftersom projektet saknar delad remote state for Terraform.
+- manuell `apply` via `workflow_dispatch`, dar befintliga resurser forst importeras till Actions-jobbets temporara state innan `terraform apply -auto-approve`
 
 ## Screenshot av pipeline som passerar
 
@@ -48,6 +47,12 @@ Befintlig bild kan anvandas som underlag:
 ```
 
 Om du tar en ny bild fran en helt gron Actions-korning kan du ersatta den med den.
+
+Aktuell bild som visar gron korning med `plan` och `apply`:
+
+```md
+![Pipeline / Plan and Apply](Material%20f%C3%B6r%20rapport%20lab1/githubaction%20terraform%20ci%20plan%20%26%20apply.png)
+```
 
 ## Screenshot av VM i GCP Console
 

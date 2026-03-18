@@ -10,8 +10,8 @@ Jag verifierade ocksa att problemet i GCP inte bara handlade om login utan om sa
 
 Nar jag korde `terraform plan` och `terraform apply` igen fungerade `plan`. Med en ny service account-nyckel kom `apply` forbi IAM-felet, och efter att jag tog bort publik IP fran VM:n gick hela deploymenten igenom. Bade VM:n och backup-kopplingen skapades korrekt.
 
-Det mesta av kodarbetet ar klart. Slutlaget ar att `terraform apply` fungerar lokalt, medan GitHub Actions kor `lint`, `security`, `validate` och `plan` men inte `apply` eftersom delad remote state saknas.
+Det mesta av kodarbetet ar klart. Slutlaget ar att `terraform apply` fungerar lokalt, och GitHub Actions kan nu ocksa kora en manuell `apply`-korning via `workflow_dispatch`. For att undvika konflikt med saknad delad remote state importeras de befintliga resurserna forst till jobbets temporara state innan `apply` kors.
 
-Kommentar till lararen: Ar detta upplagg okej for godkant?
+Kommentar till lararen: Uppgiften ar nu verifierad bade lokalt och i GitHub Actions, inklusive en gron `apply`-korning med bifogad screenshot.
 
 Som sista kontroll verifierade jag ocksa att kansliga och lokala Terraform-filer fortfarande ignorerades av `.gitignore`.
